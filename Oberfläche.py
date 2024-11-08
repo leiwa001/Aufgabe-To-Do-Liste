@@ -89,5 +89,5 @@ loesch_button.place(relx = 0.85, rely = 0.85, width = 100, height = 40)
 loesch_label.place(relx = 0.78, rely = 0.85)
 
 
-#Schleife für Betrieb bis Benutzereingabe erfolgt
+#Schleife für Betrieb bis Benutzereingabe erfolgt...
 fenster.mainloop()
