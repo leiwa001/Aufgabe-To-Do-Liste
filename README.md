@@ -12,5 +12,5 @@ GUI:
     Lade-Button aus JSON-Datei
     ausgewählte Aufgabe soll aus der Liste gelöscht werden können
 
-Verarbreitung
+Verarbeitung
     Aufgabenliste soll in json-Datei gespeichert werden
