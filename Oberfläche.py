@@ -1,10 +1,6 @@
 from tkinter import *
 from tkinter import messagebox
 
-from pathlib import Path
-import json
-
-
 #Funktion für Eingabefeld
 def button_action_eingabefeld():
     task = eingabefeld.get()
