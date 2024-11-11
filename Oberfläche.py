@@ -1,5 +1,4 @@
-from tkinter import *
-from tkinter import messagebox
+import tkinter as tk
 
 #Funktion für Eingabefeld
 def button_action_eingabefeld():
@@ -24,46 +23,46 @@ def button_action_loeschen():
         
 
 #Fenster erstellen
-fenster = Tk()
+fenster = tk.Tk()
 
 #Fenstergröße und Titel festlegen
 fenster.geometry("1200x700")
 fenster.title("\nDie To-Do-Liste\n")
 
 #Eingabefeld beschreiben
-eingabefeld = Entry(fenster, bd=3, width=80)
+eingabefeld = tk.Entry(fenster, bd=3, width=80)
 
 #Label s.Text
-anfangs_label = Label(fenster, text="Gib deine Aufgabe ein: ")
+anfangs_label = tk.Label(fenster, text="Gib deine Aufgabe ein: ")
 
 #Label, dass die Aufgabe als gespeichert anzeigt
-task_label = Label(fenster)
+task_label = tk.Label(fenster)
 
 #Button, um task zu bestätigen
-task_button = Button(fenster, text="Bestätigen", command = button_action_eingabefeld, bd=5)
+task_button = tk.Button(fenster, text="Bestätigen", command = button_action_eingabefeld, bd=5)
 
 #Button, um Daten in Json zu speichern
-speicher_button = Button(fenster, text="Speichern", command = button_action_speichern, bd=5)
+speicher_button = tk.Button(fenster, text="Speichern", command = button_action_speichern, bd=5)
 
 #Button, um Daten aus Json zu laden
-lade_button = Button(fenster, text="Laden", command = button_action_laden, bd=5)
+lade_button = tk.Button(fenster, text="Laden", command = button_action_laden, bd=5)
 
 #Label, um Speichern/Laden zu bestätigen
-speicher_label = Label(fenster)
-lade_label = Label(fenster)
+speicher_label = tk.Label(fenster)
+lade_label = tk.Label(fenster)
 
 
 #Exit Button
-exit_button = Button(fenster, text="Beenden", command = fenster.quit, bd=5)
+exit_button = tk.Button(fenster, text="Beenden", command = fenster.quit, bd=5)
 
 #Auflistung hinzufügen
-aufgabenliste = Listbox(fenster, width = 38, height = 32)
+aufgabenliste = tk.Listbox(fenster, width = 38, height = 32)
 aufgabenliste.insert(1, "test")
 aufgabenliste.insert(1, "test2")
 
-aufgaben_label = Label(fenster, text="Deine Aufgaben:")
-loesch_button = Button(fenster, text="Löschen", command = button_action_loeschen, bd=5)
-loesch_label = Label(fenster)
+aufgaben_label = tk.Label(fenster, text="Deine Aufgaben:")
+loesch_button = tk.Button(fenster, text="Löschen", command = button_action_loeschen, bd=5)
+loesch_label = tk.Label(fenster)
 
 
 #Komponenten zu Fenster hinzufügen und beschreiben
