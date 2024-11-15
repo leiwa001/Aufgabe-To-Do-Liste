@@ -20,7 +20,6 @@ def button_action_eingabefeld():
         print(dict_list)
         eingabefeld.delete(0,tk.END)
 
-
 #Funktion für Speichern in Json File
 def button_action_speichern():
     speicher_label.config(text = "Ich speicher!")
