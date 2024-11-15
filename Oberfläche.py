@@ -31,7 +31,11 @@ def button_action_laden():
 #Funktion für Lösch Button
 def button_action_loeschen():
     loesch_label.config(text = "Ich lösche!")
-        
+
+#mit Enter bestätigen Hilfsfunktion        
+def callback(event):
+    button_action_eingabefeld()
+
 
 #Fenster erstellen
 fenster = tk.Tk()
@@ -40,8 +44,9 @@ fenster = tk.Tk()
 fenster.geometry("1200x700")
 fenster.title("\nDie To-Do-Liste\n")
 
-#Eingabefeld beschreiben
+#Eingabefeld beschreiben und mit Enter bestätigen
 eingabefeld = tk.Entry(fenster, bd=3, width=80)
+eingabefeld.bind("<Return>", callback)
 
 #Label s.Text
 anfangs_label = tk.Label(fenster, text="Gib deine Aufgabe ein: ")
@@ -62,14 +67,12 @@ lade_button = tk.Button(fenster, text="Laden", command = button_action_laden, bd
 speicher_label = tk.Label(fenster)
 lade_label = tk.Label(fenster)
 
-
 #Exit Button
 exit_button = tk.Button(fenster, text="Beenden", command = fenster.quit, bd=5)
 
 #Auflistung hinzufügen
 aufgabenliste = tk.Listbox(fenster, width = 38, height = 32)
 aufgabenliste.insert(1, "test")
-
 
 aufgaben_label = tk.Label(fenster, text="Deine Aufgaben:")
 loesch_button = tk.Button(fenster, text="Löschen", command = button_action_loeschen, bd=5)
