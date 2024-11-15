@@ -7,7 +7,7 @@ dict = {
     'completed' :   'false'
 }
 
-#Funktion für Eingabefeld: Label 'Aufgabe wurde gespeichert', dict erstellen, dict an dict_liste anhängen, eingabefeld zurücksetzen
+#Funktion für Eingabefeld: Label 'Aufgabe wurde gespeichert', dict erstellen, dict an dict_liste anhängen, eingabefeld zurücksetzen, task in liste anzeigen
 def button_action_eingabefeld():
     task = eingabefeld.get()
     if(task == ""):
@@ -19,6 +19,7 @@ def button_action_eingabefeld():
         dict_list.append(dict)
         print(dict_list)
         eingabefeld.delete(0,tk.END)
+        aufgabenliste.insert(tk.END, task)
 
 #Funktion für Speichern in Json File
 def button_action_speichern():
@@ -72,7 +73,6 @@ exit_button = tk.Button(fenster, text="Beenden", command = fenster.quit, bd=5)
 
 #Auflistung hinzufügen
 aufgabenliste = tk.Listbox(fenster, width = 38, height = 32)
-aufgabenliste.insert(1, "test")
 
 aufgaben_label = tk.Label(fenster, text="Deine Aufgaben:")
 loesch_button = tk.Button(fenster, text="Löschen", command = button_action_loeschen, bd=5)
