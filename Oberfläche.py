@@ -35,6 +35,17 @@ def button_action_speichern():
 #Funktion für Laden aus Json File
 def button_action_laden():
     lade_label.config(text = "Ich lade!")
+    path = Path('mylist.json')
+    if path.exists():
+        task_list = path.read_text()
+        dict_list = json.loads(task_list)
+        print(dict_list)
+        for wert in dict_list:
+            task = wert['task']
+            aufgabenliste.insert(tk.END, task)
+    else:
+        print("Keine Aufgaben gespeichert")
+
 
 #Funktion für Lösch Button
 def button_action_loeschen():
