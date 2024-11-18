@@ -12,6 +12,7 @@ dict = {
 
 #Funktion für Eingabefeld: Label 'Aufgabe wurde gespeichert', dict erstellen, dict an dict_liste anhängen, eingabefeld zurücksetzen, task in liste anzeigen
 def button_action_eingabefeld():
+    global dict_list
     task = eingabefeld.get()
     if(task == ""):
         task_label.config(text = "Gib zuerst eine Aufgabe ein!")
@@ -27,14 +28,15 @@ def button_action_eingabefeld():
 
 #Funktion für Speichern in Json File
 def button_action_speichern():
-    speicher_label.config(text = "Ich speicher!")
+    speicher_label.config(text = "Ihre Aufgaben wurden gespeichert!")
     path = Path('mylist.json')
     task_list =json.dumps(dict_list)
     path.write_text(task_list)    
 
 #Funktion für Laden aus Json File
 def button_action_laden():
-    lade_label.config(text = "Ich lade!")
+    global dict_list
+    lade_label.config(text = "Ihre Aufgaben wurden geladen!")
     path = Path('mylist.json')
     if path.exists():
         task_list = path.read_text()
@@ -49,7 +51,20 @@ def button_action_laden():
 
 #Funktion für Lösch Button
 def button_action_loeschen():
-    loesch_label.config(text = "Ich lösche!")
+    global sel_task
+    loesch_label.config(text = "Die ausgewählte Aufgabe\n wurde gelöscht!")
+    sel_task = aufgabenliste.curselection()
+    print(sel_task)
+    aufgabenliste.delete(sel_task)
+    aufgabe_aus_liste_löschen()
+
+#löscht ausgewählte aufgabe aus dict_list
+def aufgabe_aus_liste_löschen():
+    global sel_task
+    print(sel_task)
+    for i in range(100):
+        if(sel_task == (i,)):
+            del dict_list[i]
 
 #mit Enter bestätigen Hilfsfunktion        
 def callback(event):
@@ -90,7 +105,7 @@ lade_label = tk.Label(fenster)
 exit_button = tk.Button(fenster, text="Beenden", command = fenster.quit, bd=5)
 
 #Auflistung hinzufügen
-aufgabenliste = tk.Listbox(fenster, width = 38, height = 32)
+aufgabenliste = tk.Listbox(fenster, width = 28, height = 28)
 
 aufgaben_label = tk.Label(fenster, text="Deine Aufgaben:")
 loesch_button = tk.Button(fenster, text="Löschen", command = button_action_loeschen, bd=5)
@@ -105,16 +120,17 @@ task_button.place(relx = 0.4, rely = 0.25, width = 100, height = 40)
 
 speicher_button.place(relx = 0.15, rely = 0.7, width = 100, height = 40)
 lade_button.place(relx = 0.6, rely = 0.7, width = 100, height = 40)
-speicher_label.place(relx = 0.15, rely = 0.78)
-lade_label.place(relx = 0.6, rely = 0.78)
+speicher_label.place(relx = 0.1, rely = 0.78)
+lade_label.place(relx = 0.55, rely = 0.78)
 
 exit_button.place(relx = 0.375, rely = 0.85, width = 100, height = 40)
 
-aufgabenliste.place(relx = 0.78, rely = 0.1)
-aufgaben_label.place(relx = 0.78, rely = 0.065)
+aufgabenliste.place(relx = 0.8, rely = 0.1)
+aufgaben_label.place(relx = 0.8, rely = 0.065)
 loesch_button.place(relx = 0.85, rely = 0.85, width = 100, height = 40)
-loesch_label.place(relx = 0.78, rely = 0.85)
+loesch_label.place(relx = 0.82, rely = 0.9)
 
+button_action_laden()
 
 #Schleife für Betrieb bis Benutzereingabe erfolgt...
 fenster.mainloop()
