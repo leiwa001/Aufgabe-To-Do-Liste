@@ -1,10 +1,13 @@
 import tkinter as tk
 
+from pathlib import Path
+import json
+
 dict_list = []
 
 dict = {
     'task'      :   'Aufgabe1',
-    'completed' :   'false'
+    'completed' :    False
 }
 
 #Funktion für Eingabefeld: Label 'Aufgabe wurde gespeichert', dict erstellen, dict an dict_liste anhängen, eingabefeld zurücksetzen, task in liste anzeigen
@@ -14,9 +17,10 @@ def button_action_eingabefeld():
         task_label.config(text = "Gib zuerst eine Aufgabe ein!")
     else:
         dict['task'] = task
+        new_dict = dict.copy()
         bestaetigung_task = "Die Aufgabe: '" + task + "' wurde gespeichert."
         task_label.config(text = bestaetigung_task)
-        dict_list.append(dict)
+        dict_list.append(new_dict)
         print(dict_list)
         eingabefeld.delete(0,tk.END)
         aufgabenliste.insert(tk.END, task)
@@ -24,6 +28,9 @@ def button_action_eingabefeld():
 #Funktion für Speichern in Json File
 def button_action_speichern():
     speicher_label.config(text = "Ich speicher!")
+    path = Path('mylist.json')
+    task_list =json.dumps(dict_list)
+    path.write_text(task_list)    
 
 #Funktion für Laden aus Json File
 def button_action_laden():

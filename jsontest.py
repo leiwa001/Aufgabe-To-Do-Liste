@@ -1,11 +1,7 @@
+from pathlib import Path
 import json
 
-dog_data = {
-   "name": "Frieda"
-     }
-
-dog_data_json = json.dumps(dog_data)
-print(dog_data_json)
-
-new_dog_data = json.loads(dog_data_json)
-print(new_dog_data)
+numbers = [2, 3, 4, 5, 6, 7, 8]
+path = Path('numbers.json')
+contents = json.dumps(numbers)
+path.write_text(contents)
