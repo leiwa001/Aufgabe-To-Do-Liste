@@ -25,13 +25,15 @@ def button_action_eingabefeld():
         print(dict_list)
         eingabefeld.delete(0,tk.END)
         aufgabenliste.insert(tk.END, task)
+    label_löschen_eingabe()
 
 #Funktion für Speichern in Json File
 def button_action_speichern():
     speicher_label.config(text = "Ihre Aufgaben wurden gespeichert!")
     path = Path('mylist.json')
     task_list =json.dumps(dict_list)
-    path.write_text(task_list)    
+    path.write_text(task_list) 
+    label_löschen_speichern()   
 
 #Funktion für Laden aus Json File
 def button_action_laden():
@@ -47,6 +49,7 @@ def button_action_laden():
             aufgabenliste.insert(tk.END, task)
     else:
         print("Keine Aufgaben gespeichert")
+    label_löschen_laden()
 
 
 #Funktion für Lösch Button
@@ -57,18 +60,44 @@ def button_action_loeschen():
     print(sel_task)
     aufgabenliste.delete(sel_task)
     aufgabe_aus_liste_löschen()
+    
 
 #löscht ausgewählte aufgabe aus dict_list
 def aufgabe_aus_liste_löschen():
     global sel_task
-    print(sel_task)
     for i in range(100):
         if(sel_task == (i,)):
             del dict_list[i]
+    label_löschen_löschen()
+    
 
 #mit Enter bestätigen Hilfsfunktion        
 def callback(event):
     button_action_eingabefeld()
+
+
+def label_löschen_eingabe():
+    speicher_label.config(text = " ")
+    lade_label.config(text = " ")
+    loesch_label.config(text = " ")
+
+
+def label_löschen_speichern():
+    task_label.config(text = " ")
+    lade_label.config(text = " ")
+    loesch_label.config(text = " ")
+
+
+def label_löschen_laden():
+    task_label.config(text = " ")
+    speicher_label.config(text = " ")
+    loesch_label.config(text = " ")
+
+
+def label_löschen_löschen():
+    task_label.config(text = " ")
+    speicher_label.config(text = " ")
+    lade_label.config(text = " ")
 
 
 #Fenster erstellen
@@ -118,10 +147,10 @@ eingabefeld.place(relx = 0.25, rely = 0.1)
 task_label.place(relx = 0.37, rely = 0.2)
 task_button.place(relx = 0.4, rely = 0.25, width = 100, height = 40)
 
-speicher_button.place(relx = 0.15, rely = 0.7, width = 100, height = 40)
-lade_button.place(relx = 0.6, rely = 0.7, width = 100, height = 40)
-speicher_label.place(relx = 0.1, rely = 0.78)
-lade_label.place(relx = 0.55, rely = 0.78)
+speicher_button.place(relx = 0.25, rely = 0.5, width = 100, height = 40)
+lade_button.place(relx = 0.5, rely = 0.5, width = 100, height = 40)
+speicher_label.place(relx = 0.2, rely = 0.58)
+lade_label.place(relx = 0.45, rely = 0.58)
 
 exit_button.place(relx = 0.375, rely = 0.85, width = 100, height = 40)
 
@@ -129,8 +158,6 @@ aufgabenliste.place(relx = 0.8, rely = 0.1)
 aufgaben_label.place(relx = 0.8, rely = 0.065)
 loesch_button.place(relx = 0.85, rely = 0.85, width = 100, height = 40)
 loesch_label.place(relx = 0.82, rely = 0.9)
-
-button_action_laden()
 
 #Schleife für Betrieb bis Benutzereingabe erfolgt...
 fenster.mainloop()
