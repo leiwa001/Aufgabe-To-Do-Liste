@@ -100,7 +100,7 @@ class GUI:
     def button_action_speichern(self):
         self.speicher_label.config(text="Ihre Aufgaben wurden gespeichert!")
         path = Path("mylist.json")
-        self.task_list = json.dumps(self.dict_list)
+        self.task_list = json.dumps(self.dict_list, indent=4)
         path.write_text(self.task_list)
         self.label_loeschen_speichern()
 
@@ -170,7 +170,7 @@ class GUI:
         self.new_window.destroy()
 
         path = Path("mylist.json")
-        self.task_list = json.dumps(self.dict_list)
+        self.task_list = json.dumps(self.dict_list, indent=4)
         path.write_text(self.task_list)
         self.label_loeschen_speichern()
 

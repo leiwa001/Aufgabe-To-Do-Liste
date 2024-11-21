@@ -1,1 +1,38 @@
-[{"task": "liegen", "completed": false, "beschreibung": "Beschreibung:\n\n", "faelligkeit": ""}, {"task": "humpeln", "completed": false, "beschreibung": "Beschreibung:\n\n\nIch humpel\ndurchgehend\n", "faelligkeit": ""}, {"task": "gehen", "completed": false, "beschreibung": "Beschreibung:\n\n", "faelligkeit": ""}, {"task": "laufen", "completed": false, "beschreibung": "Beschreibung:\n\n", "faelligkeit": ""}]
+[
+    {
+        "task": "liegen",
+        "completed": false,
+        "beschreibung": "Beschreibung:\n\n",
+        "faelligkeit": ""
+    },
+    {
+        "task": "humpeln",
+        "completed": false,
+        "beschreibung": "Beschreibung:\n\n\nIch humpel\ndurchgehend\n",
+        "faelligkeit": ""
+    },
+    {
+        "task": "gehen",
+        "completed": false,
+        "beschreibung": "Beschreibung:\n\n",
+        "faelligkeit": ""
+    },
+    {
+        "task": "laufen",
+        "completed": false,
+        "beschreibung": "Beschreibung:\n\n",
+        "faelligkeit": ""
+    },
+    {
+        "task": "lesen",
+        "completed": false,
+        "beschreibung": "Beschreibung:\n\n",
+        "faelligkeit": ""
+    },
+    {
+        "task": "schlafen",
+        "completed": false,
+        "beschreibung": "Beschreibung:\n\n",
+        "faelligkeit": ""
+    }
+]
