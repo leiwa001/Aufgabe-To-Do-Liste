@@ -1,7 +1,9 @@
 import tkinter as tk
 
+
 class EditableListbox(tk.Listbox):
     """A listbox where you can directly edit an item via double-click"""
+
     def __init__(self, master, **kwargs):
         super().__init__(master, **kwargs)
         self.edit_item = None
@@ -35,6 +37,7 @@ class EditableListbox(tk.Listbox):
         self.delete(self.edit_item)
         self.insert(self.edit_item, new_data)
         event.widget.destroy()
+
 
 root = tk.Tk()
 lb = EditableListbox(root)
