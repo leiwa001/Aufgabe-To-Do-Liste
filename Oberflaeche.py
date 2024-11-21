@@ -4,7 +4,7 @@ from pathlib import Path
 
 dict_list = []
 
-dictionary = {"task": "Aufgabe1", "completed": False}
+dictionary = {"task": "Aufgabe1", "completed": False, "beschreibung":"Beschreibung:\n\n", "faelligkeit": ""}
 
 
 # Funktion für Eingabefeld: Label 'Aufgabe wurde gespeichert', dict erstellen, dict an dict_liste anhängen,
@@ -77,6 +77,7 @@ def callback(event):
 
 #öffnet Bearbeitung
 def button_action_bearbeiten():
+    global x
     sel_task = aufgabenliste.curselection()
     new_window = tk.Toplevel(fenster)
     new_window.geometry("1000x600")
@@ -84,12 +85,26 @@ def button_action_bearbeiten():
         if sel_task == (i,):
             sel_dict = dict_list[i]
             task = sel_dict['task']
+            beschreibung = sel_dict['beschreibung']
     new_window.title(task)
+    print(beschreibung)
+    print(task)
 
-    speicher_button = tk.Button(new_window, text="Speichern", command = new_window.quit, bd=5)
+
+    speicher_button = tk.Button(new_window, text="Speichern", bd=5)
     speicher_button.place(relx=0.82, rely=0.9)
     task_label = tk.Label(new_window, text=f"Aufgabe: '{task}'", font=("Arial", 20))
     task_label.place(relx=0.42, rely=0.07)
+
+    textfeld = tk.Text(new_window, height=18, width=30)
+    textfeld.place(relx=0.7, rely=0.2)
+    textfeld.insert(tk.END, beschreibung)
+
+    
+        eingabe = textfeld.get("1.0", tk.END)
+        sel_dict["beschreibung"]= eingabe
+        print(sel_dict)
+
 
 
 

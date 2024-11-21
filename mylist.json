@@ -1,1 +1,1 @@
-[{"task": "liegen", "completed": false}, {"task": "humpeln", "completed": false}]
+[{"task": "liegen", "completed": false, "beschreibung": "Beschreibung:\n\n", "faelligkeit": ""}, {"task": "humpeln", "completed": false, "beschreibung": "Beschreibung:\n\n\n", "faelligkeit": ""}, {"task": "gehen", "completed": false, "beschreibung": "Beschreibung:\n\n", "faelligkeit": ""}, {"task": "laufen", "completed": false, "beschreibung": "Beschreibung:\n\n", "faelligkeit": ""}]
