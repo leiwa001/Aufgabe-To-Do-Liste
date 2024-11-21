@@ -4,15 +4,15 @@ from pathlib import Path
 
 
 class GUI:
-    def __init__(self):
+    def __init__(self, fenster):
         super().__init__()
 
+        self.fenster = fenster
 
         self.dict_list = []
-        self.dictionary = {"task": "Aufgabe1", "completed": False, "beschreibung":"Beschreibung:\n\n", "faelligkeit": ""}
+        self.dictionary = {"task": "Aufgabe1", "completed": False, "beschreibung": "Beschreibung:\n\n", "faelligkeit": ""}
 
         # Fenster erstellen
-        self.fenster = tk.Tk()
 
         # Fenstergröße und Titel festlegen
         self.fenster.geometry("1200x700")
@@ -44,7 +44,7 @@ class GUI:
         # Exit Button
         self.exit_button = tk.Button(self.fenster, text="Beenden", command=self.fenster.quit, bd=5)
 
-        #Bearbeiten-Button
+        # Bearbeiten-Button
         self.bearbeiten_button = tk.Button(self.fenster, text="Bearbeiten", command=self.button_action_bearbeiten, bd=5)
 
         # Auflistung hinzufügen
@@ -55,7 +55,6 @@ class GUI:
         self.aufgaben_label = tk.Label(self.fenster, text="Deine Aufgaben:")
         self.loesch_button = tk.Button(self.fenster, text="Löschen", command=self.button_action_loeschen, bd=5)
         self.loesch_label = tk.Label(self.fenster)
-
 
         # Komponenten zu Fenster hinzufügen und beschreiben
         self.anfangs_label.place(relx=0.1, rely=0.1)
@@ -79,13 +78,10 @@ class GUI:
 
         self.button_action_laden()
 
-        self.fenster.mainloop()
-
-
         # Funktion für Eingabefeld: Label 'Aufgabe wurde gespeichert', dict erstellen, dict an dict_liste anhängen,
-# eingabefeld zurücksetzen, task in liste anzeigen
+
+    # eingabefeld zurücksetzen, task in liste anzeigen
     def button_action_eingabefeld(self):
-        global dict_list  # noqa: PLW0602
         task = self.eingabefeld.get()
         if task == "":
             self.task_label.config(text="Gib zuerst eine Aufgabe ein!")
@@ -94,125 +90,114 @@ class GUI:
             new_dict = self.dictionary.copy()
             bestaetigung_task = "Die Aufgabe: '" + task + "' wurde gespeichert."
             self.task_label.config(text=bestaetigung_task)
-            dict_list.append(new_dict)
-            print(dict_list)
+            self.dict_list.append(new_dict)
+            print(self.dict_list)
             self.eingabefeld.delete(0, tk.END)
             self.aufgabenliste.insert(tk.END, task)
         self.label_loeschen_eingabe()
-
 
     # Funktion für Speichern in Json File
     def button_action_speichern(self):
         self.speicher_label.config(text="Ihre Aufgaben wurden gespeichert!")
         path = Path("mylist.json")
-        task_list = json.dumps(dict_list)
-        path.write_text(task_list)
+        self.task_list = json.dumps(self.dict_list)
+        path.write_text(self.task_list)
         self.label_loeschen_speichern()
-
 
     # Funktion für Laden aus Json File
     def button_action_laden(self):
-        global dict_list  # noqa: PLW0603
         self.lade_label.config(text="Ihre Aufgaben wurden geladen!")
         path = Path("mylist.json")
         if path.exists():
-            task_list = path.read_text()
-            dict_list = json.loads(task_list)
-            print(dict_list)
-            for wert in dict_list:
+            self.task_list = path.read_text()
+            self.dict_list = json.loads(self.task_list)
+            print(self.dict_list)
+            for wert in self.dict_list:
                 task = wert["task"]
                 self.aufgabenliste.insert(tk.END, task)
         else:
             print("Keine Aufgaben gespeichert")
         self.label_loeschen_laden()
 
-
     # Funktion für Lösch Button
     def button_action_loeschen(self):
-        global sel_task  # noqa: PLW0603
         self.loesch_label.config(text="Die ausgewählte Aufgabe\n wurde gelöscht!")
-        sel_task = self.aufgabenliste.curselection()
-        print(sel_task)
-        self.aufgabenliste.delete(sel_task)
+        self.sel_task = self.aufgabenliste.curselection()
+        print(self.sel_task)
+        self.aufgabenliste.delete(self.sel_task)
         self.aufgabe_aus_liste_loeschen()
-
 
     # löscht ausgewählte aufgabe aus dict_list
     def aufgabe_aus_liste_loeschen(self):
-        global sel_task  # noqa: PLW0602
         for i in range(100):
-            if sel_task == (i,):
-                del dict_list[i]
+            if self.sel_task == (i,):
+                del self.dict_list[i]
         self.label_loeschen_loeschen()
-
 
     # mit Enter bestätigen Hilfsfunktion
     def callback(self, event):
         self.button_action_eingabefeld()
 
-    #öffnet Bearbeitung
+    # öffnet Bearbeitung
     def button_action_bearbeiten(self):
+        self.new_window = tk.Toplevel(self.fenster)
+        self.new_window.geometry("1000x600")
+
         sel_task = self.aufgabenliste.curselection()
-        new_window = tk.Toplevel(self.fenster)
-        new_window.geometry("1000x600")
+
         for i in range(100):
             if sel_task == (i,):
-                sel_dict = dict_list[i]
-                task = sel_dict['task']
-                beschreibung = sel_dict['beschreibung']
-        new_window.title(task)
-        print(beschreibung)
-        print(task)
+                self.sel_dict = self.dict_list[i]
+                task = self.sel_dict["task"]
+                beschreibung = self.sel_dict["beschreibung"]
 
+        self.new_window.title(task)
 
-        speicher_button = tk.Button(new_window, text="Speichern", bd=5)
+        speicher_button = tk.Button(self.new_window, text="Speichern", command=self.bearbeitung_speichern, bd=5)
         speicher_button.place(relx=0.82, rely=0.9)
-        task_label = tk.Label(new_window, text=f"Aufgabe: '{task}'", font=("Arial", 20))
+
+        task_label = tk.Label(self.new_window, text=f"Aufgabe: '{task}'", font=("Arial", 20))
         task_label.place(relx=0.42, rely=0.07)
 
-        textfeld = tk.Text(new_window, height=18, width=30)
-        textfeld.place(relx=0.7, rely=0.2)
-        textfeld.insert(tk.END, beschreibung)
+        self.textfeld = tk.Text(self.new_window, height=18, width=30)
+        self.textfeld.place(relx=0.7, rely=0.2)
+        self.textfeld.insert(tk.END, beschreibung)
 
+    def bearbeitung_speichern(self):
+        eingabe = self.textfeld.get("1.0", tk.END)
+        self.sel_dict["beschreibung"] = eingabe
+        print(self.sel_dict)
+        self.new_window.destroy()
 
-        eingabe = textfeld.get("1.0", tk.END)
-        sel_dict["beschreibung"]= eingabe
-        print(sel_dict)
-
-
-
-
-
+        path = Path("mylist.json")
+        self.task_list = json.dumps(self.dict_list)
+        path.write_text(self.task_list)
+        self.label_loeschen_speichern()
 
     def label_loeschen_eingabe(self):
         self.speicher_label.config(text=" ")
         self.lade_label.config(text=" ")
         self.loesch_label.config(text=" ")
 
-
     def label_loeschen_speichern(self):
         self.task_label.config(text=" ")
         self.lade_label.config(text=" ")
         self.loesch_label.config(text=" ")
-
 
     def label_loeschen_laden(self):
         self.task_label.config(text=" ")
         self.speicher_label.config(text=" ")
         self.loesch_label.config(text=" ")
 
-
     def label_loeschen_loeschen(self):
         self.task_label.config(text=" ")
         self.speicher_label.config(text=" ")
         self.lade_label.config(text=" ")
 
-
     # Index des zu bearbeitenden Element
     def edit_start(self, event):
         index = self.aufgabenliste.index(f"@{event.x},{event.y}")
         self.task_edit(index)
-
 
     # Einbinden Doppelklick und dann entsprechende Bearbeitung
     def task_edit(self, index):
@@ -229,11 +214,9 @@ class GUI:
         entry.place(relx=0.8, y=y0 + 70, relwidth=0.2, width=-1)
         entry.focus_set()
 
-
     # bei 'ESC' berabeiten abbrechen
     def cancel_edit(self, event):
         event.widget.destroy()
-
 
     # bei 'Enter' alten Eintrag löschen und neuen hinzufügen
     def accept_edit(self, event):
@@ -242,7 +225,9 @@ class GUI:
         self.aufgabenliste.insert(self.aufgabenliste.edit_item, new_data)
         event.widget.destroy()
 
-fenster = GUI()
+
+fenster = tk.Tk()
+
+app = GUI(fenster)
 
 fenster.mainloop()
-
