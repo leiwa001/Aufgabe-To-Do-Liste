@@ -100,6 +100,38 @@ def label_löschen_löschen():
     lade_label.config(text = " ")
 
 
+def edit_start(event):
+    index = aufgabenliste.index(f"@{event.x},{event.y}")
+    task_edit(index)
+
+
+def task_edit(index):
+    aufgabenliste.edit_item = index
+    text = aufgabenliste.get(index)
+    y0 = aufgabenliste.bbox(index)[1]
+    entry = tk.Entry(fenster, borderwidth=0, highlightthickness=1)
+    entry.bind("<Return>", accept_edit)
+    entry.bind("<Escape>", cancel_edit)
+
+    entry.insert(0, text)
+    entry.selection_from(0)
+    entry.selection_to("end")
+    entry.place(relx=0.8, y=y0+70, relwidth=0.2, width=-1)
+    entry.focus_set()
+    entry.grab_set()
+
+  
+
+
+def cancel_edit(event):
+    event.widget.destroy()
+
+def accept_edit(event):
+    new_data = event.widget.get()
+    aufgabenliste.delete(aufgabenliste.edit_item)
+    aufgabenliste.insert(aufgabenliste.edit_item, new_data)
+    event.widget.destroy()
+
 #Fenster erstellen
 fenster = tk.Tk()
 
@@ -134,7 +166,9 @@ lade_label = tk.Label(fenster)
 exit_button = tk.Button(fenster, text="Beenden", command = fenster.quit, bd=5)
 
 #Auflistung hinzufügen
-aufgabenliste = tk.Listbox(fenster, width = 28, height = 28)
+aufgabenliste = tk.Listbox(fenster, width = 28, height = 28, bd = 5)
+
+aufgabenliste.bind("<Double-1>", edit_start)
 
 aufgaben_label = tk.Label(fenster, text="Deine Aufgaben:")
 loesch_button = tk.Button(fenster, text="Löschen", command = button_action_loeschen, bd=5)
@@ -158,6 +192,8 @@ aufgabenliste.place(relx = 0.8, rely = 0.1)
 aufgaben_label.place(relx = 0.8, rely = 0.065)
 loesch_button.place(relx = 0.85, rely = 0.85, width = 100, height = 40)
 loesch_label.place(relx = 0.82, rely = 0.9)
+
+button_action_laden()
 
 #Schleife für Betrieb bis Benutzereingabe erfolgt...
 fenster.mainloop()
