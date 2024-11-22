@@ -8,8 +8,9 @@
     {
         "task": "humpeln",
         "completed": false,
-        "beschreibung": "Beschreibung:\n\n\nIch humpel\ndurchgehend\n",
-        "faelligkeit": ""
+        "beschreibung": "Beschreibung:\n\n\nIch humpel\ndurchgehend\n\n\n\n\n\n",
+        "faelligkeit": "",
+        "faellifkeit": "20.11.24"
     },
     {
         "task": "gehen",
@@ -32,7 +33,7 @@
     {
         "task": "schlafen",
         "completed": false,
-        "beschreibung": "Beschreibung:\n\n",
+        "beschreibung": "Beschreibung:\n\nSchalfen ist sehr wichtig!\n",
         "faelligkeit": ""
     }
 ]

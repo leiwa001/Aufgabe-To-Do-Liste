@@ -2,6 +2,8 @@ import json
 import tkinter as tk
 from pathlib import Path
 
+from tkcalendar import Calendar
+
 
 class GUI:
     def __init__(self, fenster):
@@ -55,6 +57,7 @@ class GUI:
         self.aufgaben_label = tk.Label(self.fenster, text="Deine Aufgaben:")
         self.loesch_button = tk.Button(self.fenster, text="Löschen", command=self.button_action_loeschen, bd=5)
         self.loesch_label = tk.Label(self.fenster)
+
 
         # Komponenten zu Fenster hinzufügen und beschreiben
         self.anfangs_label.place(relx=0.1, rely=0.1)
@@ -163,6 +166,21 @@ class GUI:
         self.textfeld.place(relx=0.7, rely=0.2)
         self.textfeld.insert(tk.END, beschreibung)
 
+        self.cal = Calendar(self.new_window, selectmode = 'day',
+                       year = 2024, month = 11, day = 10, font="Arial 12")
+        self.cal.place(relx=0.12, rely=0.48)
+        self.cal_button = tk.Button(self.new_window, text = "Auswählen", command= self.get_datum, bd=5)
+        self.cal_button.place(relx=0.2, rely=0.85)
+        self.cal_label = tk.Label(self.new_window)
+        self.cal_label.place(relx=0.4, rely=0.85)
+
+
+    def get_datum(self):
+        datum = self.cal.get_date()
+        self.cal_label.config(text = "Fälligkeitstermin: "+ self.cal.get_date())
+        self.sel_dict["faellifkeit"] = datum
+
+
     def bearbeitung_speichern(self):
         eingabe = self.textfeld.get("1.0", tk.END)
         self.sel_dict["beschreibung"] = eingabe
@@ -173,6 +191,14 @@ class GUI:
         self.task_list = json.dumps(self.dict_list, indent=4)
         path.write_text(self.task_list)
         self.label_loeschen_speichern()
+
+
+
+
+
+
+
+
 
     def label_loeschen_eingabe(self):
         self.speicher_label.config(text=" ")
