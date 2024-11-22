@@ -66,24 +66,24 @@ class GUI:
         self.loesch_label = tk.Label(self.fenster)
 
         # Komponenten zu Fenster hinzufügen und beschreiben
-        self.anfangs_label.place(relx=0.1, rely=0.1)
-        self.eingabefeld.place(relx=0.25, rely=0.1)
-        self.task_label.place(relx=0.37, rely=0.2)
-        self.task_button.place(relx=0.4, rely=0.25, width=100, height=40)
+        self.anfangs_label.place(relx=0.05, rely=0.1)
+        self.eingabefeld.place(relx=0.2, rely=0.1)
+        self.task_label.place(relx=0.37, rely=0.155)
+        self.task_button.place(relx=0.4, rely=0.2, width=100, height=40)
 
         self.speicher_button.place(relx=0.25, rely=0.5, width=100, height=40)
         self.lade_button.place(relx=0.5, rely=0.5, width=100, height=40)
         self.speicher_label.place(relx=0.2, rely=0.58)
         self.lade_label.place(relx=0.45, rely=0.58)
 
-        self.exit_button.place(relx=0.375, rely=0.85, width=100, height=40)
+        self.exit_button.place(relx=0.07, rely=0.85, width=100, height=40)
 
-        self.aufgabenliste.place(relx=0.8, rely=0.1)
-        self.aufgaben_label.place(relx=0.8, rely=0.065)
+        self.aufgabenliste.place(relx=0.79, rely=0.1)
+        self.aufgaben_label.place(relx=0.79, rely=0.06)
         self.loesch_button.place(relx=0.85, rely=0.85, width=100, height=40)
         self.loesch_label.place(relx=0.82, rely=0.9)
 
-        self.bearbeiten_button.place(relx=0.7, rely=0.2, width=100, height=40)
+        self.bearbeiten_button.place(relx=0.9, rely=0.03, width=100, height=40)
 
         self.button_action_laden()
 
@@ -96,7 +96,7 @@ class GUI:
             self.task_label.config(text="Gib zuerst eine Aufgabe ein!")
         else:
             self.dictionary["task"] = task
-            time = strftime("%d-%m-%Y")
+            time = strftime("%d.%m.%Y")
             self.dictionary["erstellung"] = time
             new_dict = self.dictionary.copy()
             bestaetigung_task = "Die Aufgabe: '" + task + "' wurde gespeichert."
@@ -195,8 +195,10 @@ class GUI:
         print(self.var1.get())
         if self.var1.get() == 1:
             self.check_label.config(text="  Abgeschlossen!")
+            self.sel_dict["completed"] = True
         else:
             self.check_label.config(text="  Noch nicht erledigt!")
+            self.sel_dict["completed"] = False
 
     def get_datum(self):
         datum = self.cal.get_date()

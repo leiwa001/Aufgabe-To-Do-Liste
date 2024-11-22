@@ -4,20 +4,20 @@
         "completed": false,
         "beschreibung": "Beschreibung:\n\n",
         "faelligkeit": "-nicht festgelegt-",
-        "erstellung": "22-11-2024"
+        "erstellung": "22.11.2024"
     },
     {
         "task": "humpeln",
-        "completed": false,
+        "completed": true,
         "beschreibung": "Beschreibung:\n\n\n\n",
         "faelligkeit": "20.11.24",
-        "erstellung": "22-11-2024"
+        "erstellung": "22.11.2024"
     },
     {
         "task": "gehen",
         "completed": false,
-        "beschreibung": "Beschreibung:\n\n\n\n",
+        "beschreibung": "Beschreibung:\n\n",
         "faelligkeit": "-nicht festgelegt-",
-        "erstellung": "22-11-2024"
+        "erstellung": "22.11.2024"
     }
 ]
