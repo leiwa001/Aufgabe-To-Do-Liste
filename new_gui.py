@@ -186,7 +186,7 @@ class GUI:
 
         check_status = "  Abgeschlossen!" if self.sel_dict["completed"] else "  Noch nicht abgeschlossen"
 
-        self.check_label = tk.Label(self.new_window, text= check_status, font="Arial 12")
+        self.check_label = tk.Label(self.new_window, text=check_status, font="Arial 12")
         self.check_label.place(relx=0.11, rely=0.32)
 
         self.var1 = tk.IntVar()
@@ -196,7 +196,7 @@ class GUI:
         check = tk.Checkbutton(self.new_window, text="", variable=self.var1, onvalue=1, offvalue=0, command=self.checkbox)
         check.place(relx=0.09, rely=0.32)
 
-    #checkbox haken und speichert in dictionary
+    # checkbox haken und speichert in dictionary
     def checkbox(self):
         if self.var1.get() == 1:
             self.check_label.config(text="  Abgeschlossen!")
@@ -205,13 +205,13 @@ class GUI:
             self.check_label.config(text="  Noch nicht erledigt!")
             self.sel_dict["completed"] = False
 
-    #faelligkeitstermin speichern
+    # faelligkeitstermin speichern
     def get_datum(self):
         datum = self.cal.get_date()
         self.cal_label.config(text="Fälligkeitstermin: " + self.cal.get_date())
         self.sel_dict["faelligkeit"] = datum
 
-    #speichert Bearbeitung im new_window
+    # speichert Bearbeitung im new_window
     def bearbeitung_speichern(self):
         eingabe = self.textfeld.get("1.0", tk.END)
         self.sel_dict["beschreibung"] = eingabe

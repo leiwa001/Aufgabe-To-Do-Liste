@@ -7,7 +7,14 @@
         "erstellung": "22.11.2024"
     },
     {
-        "task": "ruhen",
+        "task": "holen",
+        "completed": true,
+        "beschreibung": "Beschreibung:\n\nsd\n\n",
+        "faelligkeit": "21.11.24",
+        "erstellung": "22.11.2024"
+    },
+    {
+        "task": "sd",
         "completed": false,
         "beschreibung": "Beschreibung:\n\n\n",
         "faelligkeit": "-nicht festgelegt-",
