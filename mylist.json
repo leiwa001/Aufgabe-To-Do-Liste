@@ -3,37 +3,21 @@
         "task": "liegen",
         "completed": false,
         "beschreibung": "Beschreibung:\n\n",
-        "faelligkeit": ""
+        "faelligkeit": "-nicht festgelegt-",
+        "erstellung": "22-11-2024"
     },
     {
         "task": "humpeln",
         "completed": false,
-        "beschreibung": "Beschreibung:\n\n\nIch humpel\ndurchgehend\n\n\n\n\n\n",
-        "faelligkeit": "",
-        "faellifkeit": "20.11.24"
+        "beschreibung": "Beschreibung:\n\n\n\n",
+        "faelligkeit": "20.11.24",
+        "erstellung": "22-11-2024"
     },
     {
         "task": "gehen",
         "completed": false,
-        "beschreibung": "Beschreibung:\n\n",
-        "faelligkeit": ""
-    },
-    {
-        "task": "laufen",
-        "completed": false,
-        "beschreibung": "Beschreibung:\n\n",
-        "faelligkeit": ""
-    },
-    {
-        "task": "lesen",
-        "completed": false,
-        "beschreibung": "Beschreibung:\n\n",
-        "faelligkeit": ""
-    },
-    {
-        "task": "schlafen",
-        "completed": false,
-        "beschreibung": "Beschreibung:\n\nSchalfen ist sehr wichtig!\n",
-        "faelligkeit": ""
+        "beschreibung": "Beschreibung:\n\n\n\n",
+        "faelligkeit": "-nicht festgelegt-",
+        "erstellung": "22-11-2024"
     }
 ]

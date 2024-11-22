@@ -1,6 +1,7 @@
 import json
 import tkinter as tk
 from pathlib import Path
+from time import strftime
 
 from tkcalendar import Calendar
 
@@ -12,7 +13,13 @@ class GUI:
         self.fenster = fenster
 
         self.dict_list = []
-        self.dictionary = {"task": "Aufgabe1", "completed": False, "beschreibung": "Beschreibung:\n\n", "faelligkeit": ""}
+        self.dictionary = {
+            "task": "Aufgabe1",
+            "completed": False,
+            "beschreibung": "Beschreibung:\n\n",
+            "faelligkeit": "-nicht festgelegt-",
+            "erstellung": "",
+        }
 
         # Fenster erstellen
 
@@ -58,7 +65,6 @@ class GUI:
         self.loesch_button = tk.Button(self.fenster, text="Löschen", command=self.button_action_loeschen, bd=5)
         self.loesch_label = tk.Label(self.fenster)
 
-
         # Komponenten zu Fenster hinzufügen und beschreiben
         self.anfangs_label.place(relx=0.1, rely=0.1)
         self.eingabefeld.place(relx=0.25, rely=0.1)
@@ -90,6 +96,8 @@ class GUI:
             self.task_label.config(text="Gib zuerst eine Aufgabe ein!")
         else:
             self.dictionary["task"] = task
+            time = strftime("%d-%m-%Y")
+            self.dictionary["erstellung"] = time
             new_dict = self.dictionary.copy()
             bestaetigung_task = "Die Aufgabe: '" + task + "' wurde gespeichert."
             self.task_label.config(text=bestaetigung_task)
@@ -157,29 +165,43 @@ class GUI:
         self.new_window.title(task)
 
         speicher_button = tk.Button(self.new_window, text="Speichern", command=self.bearbeitung_speichern, bd=5)
-        speicher_button.place(relx=0.82, rely=0.9)
+        speicher_button.place(relx=0.78, rely=0.85)
 
         task_label = tk.Label(self.new_window, text=f"Aufgabe: '{task}'", font=("Arial", 20))
-        task_label.place(relx=0.42, rely=0.07)
+        task_label.place(relx=0.42, rely=0.05)
 
         self.textfeld = tk.Text(self.new_window, height=18, width=30)
         self.textfeld.place(relx=0.7, rely=0.2)
         self.textfeld.insert(tk.END, beschreibung)
 
-        self.cal = Calendar(self.new_window, selectmode = 'day',
-                       year = 2024, month = 11, day = 10, font="Arial 12")
-        self.cal.place(relx=0.12, rely=0.48)
-        self.cal_button = tk.Button(self.new_window, text = "Auswählen", command= self.get_datum, bd=5)
+        self.cal = Calendar(self.new_window, selectmode="day", year=2024, month=11, day=10, font="Arial 12")
+        self.cal.place(relx=0.1, rely=0.48)
+        self.cal_button = tk.Button(self.new_window, text="Auswählen", command=self.get_datum, bd=5)
         self.cal_button.place(relx=0.2, rely=0.85)
-        self.cal_label = tk.Label(self.new_window)
+        self.cal_label = tk.Label(self.new_window, font="Arial 12")
         self.cal_label.place(relx=0.4, rely=0.85)
 
+        erstellt_label = tk.Label(self.new_window, text="Erstellt am: " + self.sel_dict["erstellung"], font="Arial 12")
+        erstellt_label.place(relx=0.1, rely=0.18)
+        faellig_label = tk.Label(self.new_window, text="Fällig am: " + self.sel_dict["faelligkeit"], font="Arial 12")
+        faellig_label.place(relx=0.1, rely=0.25)
+        self.check_label = tk.Label(self.new_window, text="  Noch nicht abgeschlossen", font="Arial 12")
+        self.check_label.place(relx=0.11, rely=0.32)
+        self.var1 = tk.IntVar()
+        check = tk.Checkbutton(self.new_window, text="", variable=self.var1, onvalue=1, offvalue=0, command=self.checkbox)
+        check.place(relx=0.09, rely=0.32)
+
+    def checkbox(self):
+        print(self.var1.get())
+        if self.var1.get() == 1:
+            self.check_label.config(text="  Abgeschlossen!")
+        else:
+            self.check_label.config(text="  Noch nicht erledigt!")
 
     def get_datum(self):
         datum = self.cal.get_date()
-        self.cal_label.config(text = "Fälligkeitstermin: "+ self.cal.get_date())
-        self.sel_dict["faellifkeit"] = datum
-
+        self.cal_label.config(text="Fälligkeitstermin: " + self.cal.get_date())
+        self.sel_dict["faelligkeit"] = datum
 
     def bearbeitung_speichern(self):
         eingabe = self.textfeld.get("1.0", tk.END)
@@ -191,14 +213,6 @@ class GUI:
         self.task_list = json.dumps(self.dict_list, indent=4)
         path.write_text(self.task_list)
         self.label_loeschen_speichern()
-
-
-
-
-
-
-
-
 
     def label_loeschen_eingabe(self):
         self.speicher_label.config(text=" ")

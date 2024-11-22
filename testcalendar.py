@@ -1,29 +1,29 @@
-# Import Required Library
-from tkinter import *
-from tkcalendar import Calendar
+import tkinter as tk
+ 
 
-# Create Object
-root = Tk()
+window = tk.Tk()
+window.title('My Window')
+window.geometry('100x100')
+ 
+l = tk.Label(window, bg='white', width=20, text='empty')
+l.pack()
+ 
+def print_selection():
+    if (var1.get() == 1) & (var2.get() == 0):
+        l.config(text='I love Python ')
+    elif (var1.get() == 0) & (var2.get() == 1):
+        l.config(text='I love C++')
+    elif (var1.get() == 0) & (var2.get() == 0):
+        l.config(text='I do not anything')
+    else:
+        l.config(text='I love both')
+ 
+var1 = tk.IntVar()
+var2 = tk.IntVar()
+c1 = tk.Checkbutton(window, text='Python',variable=var1, onvalue=1, offvalue=0, command=print_selection)
+c1.pack()
+c2 = tk.Checkbutton(window, text='C++',variable=var2, onvalue=1, offvalue=0, command=print_selection)
+c2.pack()
 
-# Set geometry
-root.geometry("400x400")
+window.mainloop()
 
-# Add Calendar
-cal = Calendar(root, selectmode = 'day',
-			year = 2020, month = 5,
-			day = 22)
-
-cal.pack(pady = 20)
-
-def grad_date():
-	date.config(text = "Selected Date is: " + cal.get_date())
-
-# Add Button and Label
-Button(root, text = "Get Date",
-	command = grad_date).pack(pady = 20)
-
-date = Label(root, text = "")
-date.pack(pady = 20)
-
-# Execute Tkinter
-root.mainloop()
