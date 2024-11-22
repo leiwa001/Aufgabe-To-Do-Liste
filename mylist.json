@@ -1,22 +1,15 @@
 [
     {
-        "task": "liegen",
-        "completed": false,
-        "beschreibung": "Beschreibung:\n\n",
-        "faelligkeit": "-nicht festgelegt-",
-        "erstellung": "22.11.2024"
-    },
-    {
-        "task": "humpeln",
+        "task": "coden",
         "completed": true,
-        "beschreibung": "Beschreibung:\n\n\n\n",
-        "faelligkeit": "20.11.24",
+        "beschreibung": "Beschreibung:\n\nreicht\n\n",
+        "faelligkeit": "23.11.24",
         "erstellung": "22.11.2024"
     },
     {
-        "task": "gehen",
+        "task": "ruhen",
         "completed": false,
-        "beschreibung": "Beschreibung:\n\n",
+        "beschreibung": "Beschreibung:\n\n\n",
         "faelligkeit": "-nicht festgelegt-",
         "erstellung": "22.11.2024"
     }

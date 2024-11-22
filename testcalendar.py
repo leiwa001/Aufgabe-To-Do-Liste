@@ -1,29 +1,36 @@
 import tkinter as tk
- 
 
-window = tk.Tk()
-window.title('My Window')
-window.geometry('100x100')
- 
-l = tk.Label(window, bg='white', width=20, text='empty')
-l.pack()
- 
-def print_selection():
-    if (var1.get() == 1) & (var2.get() == 0):
-        l.config(text='I love Python ')
-    elif (var1.get() == 0) & (var2.get() == 1):
-        l.config(text='I love C++')
-    elif (var1.get() == 0) & (var2.get() == 0):
-        l.config(text='I do not anything')
-    else:
-        l.config(text='I love both')
- 
-var1 = tk.IntVar()
-var2 = tk.IntVar()
-c1 = tk.Checkbutton(window, text='Python',variable=var1, onvalue=1, offvalue=0, command=print_selection)
-c1.pack()
-c2 = tk.Checkbutton(window, text='C++',variable=var2, onvalue=1, offvalue=0, command=print_selection)
-c2.pack()
+root = tk.Tk()
 
-window.mainloop()
+def ausgabe():
+    print(checkbox01var.get())
+    aktuell_ausgewaehlt = checkbox01var.get()
+    textausgabe = tk.Label(root, text=aktuell_ausgewaehlt, bg="orange")
+    textausgabe.pack()
 
+checkbox01 = tk.Checkbutton(root)
+checkbox01["text"] = "Sport treiben"
+checkbox01.pack()
+
+checkbox01var = tk.BooleanVar()
+checkbox01var.set(True)
+checkbox01["variable"] = checkbox01var
+
+checkbox02 = tk.Checkbutton(root)
+checkbox02["text"] = "Lesen"
+checkbox02.pack()
+
+checkbox02var = tk.BooleanVar()
+checkbox02["variable"] = checkbox02var
+
+checkbox03 = tk.Checkbutton(root)
+checkbox03["text"] = "Filme schauen"
+checkbox03.pack()
+
+checkbox03var = tk.BooleanVar()
+checkbox03["variable"] = checkbox03var
+
+schaltf1 = tk.Button(root, text="Aktion durchführen", command= ausgabe)
+schaltf1.pack()
+
+root.mainloop()

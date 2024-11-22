@@ -13,6 +13,7 @@ class GUI:
         self.fenster = fenster
 
         self.dict_list = []
+
         self.dictionary = {
             "task": "Aufgabe1",
             "completed": False,
@@ -68,8 +69,8 @@ class GUI:
         # Komponenten zu Fenster hinzufügen und beschreiben
         self.anfangs_label.place(relx=0.05, rely=0.1)
         self.eingabefeld.place(relx=0.2, rely=0.1)
-        self.task_label.place(relx=0.37, rely=0.155)
-        self.task_button.place(relx=0.4, rely=0.2, width=100, height=40)
+        self.task_label.place(relx=0.36, rely=0.155)
+        self.task_button.place(relx=0.41, rely=0.2, width=100, height=40)
 
         self.speicher_button.place(relx=0.2, rely=0.85, width=100, height=40)
         self.lade_button.place(relx=0.33, rely=0.85, width=100, height=40)
@@ -102,7 +103,6 @@ class GUI:
             bestaetigung_task = "Die Aufgabe: '" + task + "' wurde gespeichert."
             self.task_label.config(text=bestaetigung_task)
             self.dict_list.append(new_dict)
-            print(self.dict_list)
             self.eingabefeld.delete(0, tk.END)
             self.aufgabenliste.insert(tk.END, task)
         self.label_loeschen_eingabe()
@@ -122,7 +122,6 @@ class GUI:
         if path.exists():
             self.task_list = path.read_text()
             self.dict_list = json.loads(self.task_list)
-            print(self.dict_list)
             for wert in self.dict_list:
                 task = wert["task"]
                 self.aufgabenliste.insert(tk.END, task)
@@ -134,7 +133,6 @@ class GUI:
     def button_action_loeschen(self):
         self.loesch_label.config(text="Die ausgewählte Aufgabe\n wurde gelöscht!")
         self.sel_task = self.aufgabenliste.curselection()
-        print(self.sel_task)
         self.aufgabenliste.delete(self.sel_task)
         self.aufgabe_aus_liste_loeschen()
 
@@ -149,7 +147,7 @@ class GUI:
     def callback(self, event):
         self.button_action_eingabefeld()
 
-    # öffnet Bearbeitung
+    # öffnet Bearbeitung und new_window mit allen button, label, etc.
     def button_action_bearbeiten(self):
         self.new_window = tk.Toplevel(self.fenster)
         self.new_window.geometry("1000x600")
@@ -185,14 +183,21 @@ class GUI:
         erstellt_label.place(relx=0.1, rely=0.18)
         faellig_label = tk.Label(self.new_window, text="Fällig am: " + self.sel_dict["faelligkeit"], font="Arial 12")
         faellig_label.place(relx=0.1, rely=0.25)
-        self.check_label = tk.Label(self.new_window, text="  Noch nicht abgeschlossen", font="Arial 12")
+
+        check_status = "  Abgeschlossen!" if self.sel_dict["completed"] else "  Noch nicht abgeschlossen"
+
+        self.check_label = tk.Label(self.new_window, text= check_status, font="Arial 12")
         self.check_label.place(relx=0.11, rely=0.32)
+
         self.var1 = tk.IntVar()
+
+        self.var1.set(1) if self.sel_dict["completed"] else self.var1.set(0)
+
         check = tk.Checkbutton(self.new_window, text="", variable=self.var1, onvalue=1, offvalue=0, command=self.checkbox)
         check.place(relx=0.09, rely=0.32)
 
+    #checkbox haken und speichert in dictionary
     def checkbox(self):
-        print(self.var1.get())
         if self.var1.get() == 1:
             self.check_label.config(text="  Abgeschlossen!")
             self.sel_dict["completed"] = True
@@ -200,15 +205,16 @@ class GUI:
             self.check_label.config(text="  Noch nicht erledigt!")
             self.sel_dict["completed"] = False
 
+    #faelligkeitstermin speichern
     def get_datum(self):
         datum = self.cal.get_date()
         self.cal_label.config(text="Fälligkeitstermin: " + self.cal.get_date())
         self.sel_dict["faelligkeit"] = datum
 
+    #speichert Bearbeitung im new_window
     def bearbeitung_speichern(self):
         eingabe = self.textfeld.get("1.0", tk.END)
         self.sel_dict["beschreibung"] = eingabe
-        print(self.sel_dict)
         self.new_window.destroy()
 
         path = Path("mylist.json")
@@ -216,6 +222,7 @@ class GUI:
         path.write_text(self.task_list)
         self.label_loeschen_speichern()
 
+    # Loesch-Funktionen, um nur 1 Label gleichzeitig anzuzeigen
     def label_loeschen_eingabe(self):
         self.speicher_label.config(text=" ")
         self.lade_label.config(text=" ")
@@ -236,7 +243,7 @@ class GUI:
         self.speicher_label.config(text=" ")
         self.lade_label.config(text=" ")
 
-    # Index des zu bearbeitenden Element
+    # Index des zu bearbeitenden Elements
     def edit_start(self, event):
         index = self.aufgabenliste.index(f"@{event.x},{event.y}")
         self.task_edit(index)
