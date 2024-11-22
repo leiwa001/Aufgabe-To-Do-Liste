@@ -71,17 +71,17 @@ class GUI:
         self.task_label.place(relx=0.37, rely=0.155)
         self.task_button.place(relx=0.4, rely=0.2, width=100, height=40)
 
-        self.speicher_button.place(relx=0.25, rely=0.5, width=100, height=40)
-        self.lade_button.place(relx=0.5, rely=0.5, width=100, height=40)
-        self.speicher_label.place(relx=0.2, rely=0.58)
-        self.lade_label.place(relx=0.45, rely=0.58)
+        self.speicher_button.place(relx=0.2, rely=0.85, width=100, height=40)
+        self.lade_button.place(relx=0.33, rely=0.85, width=100, height=40)
+        self.speicher_label.place(relx=0.34, rely=0.45)
+        self.lade_label.place(relx=0.36, rely=0.45)
 
         self.exit_button.place(relx=0.07, rely=0.85, width=100, height=40)
 
         self.aufgabenliste.place(relx=0.79, rely=0.1)
         self.aufgaben_label.place(relx=0.79, rely=0.06)
         self.loesch_button.place(relx=0.85, rely=0.85, width=100, height=40)
-        self.loesch_label.place(relx=0.82, rely=0.9)
+        self.loesch_label.place(relx=0.82, rely=0.92)
 
         self.bearbeiten_button.place(relx=0.9, rely=0.03, width=100, height=40)
 
