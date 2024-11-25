@@ -2,22 +2,29 @@
     {
         "task": "coden",
         "completed": true,
-        "beschreibung": "Beschreibung:\n\nreicht\n\n",
+        "beschreibung": "Beschreibung:\n\nreicht\n\n\n",
         "faelligkeit": "23.11.24",
         "erstellung": "22.11.2024"
     },
     {
         "task": "holen",
         "completed": true,
-        "beschreibung": "Beschreibung:\n\nsd\n\n",
+        "beschreibung": "Beschreibung:\n\nsd\n\n\n\n",
         "faelligkeit": "21.11.24",
         "erstellung": "22.11.2024"
     },
     {
         "task": "sd",
         "completed": false,
-        "beschreibung": "Beschreibung:\n\n\n",
+        "beschreibung": "Beschreibung:\n\n\n\n",
         "faelligkeit": "-nicht festgelegt-",
         "erstellung": "22.11.2024"
+    },
+    {
+        "task": "schnell",
+        "completed": false,
+        "beschreibung": "Beschreibung:\n\nschnell\n\n",
+        "faelligkeit": "26.11.24",
+        "erstellung": "25.11.2024"
     }
 ]
