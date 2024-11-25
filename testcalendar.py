@@ -1,36 +1,29 @@
-import tkinter as tk
+import tkinter as tk   
+from tkinter import ttk
+from tkinter.scrolledtext import ScrolledText 
 
-root = tk.Tk()
 
-def ausgabe():
-    print(checkbox01var.get())
-    aktuell_ausgewaehlt = checkbox01var.get()
-    textausgabe = tk.Label(root, text=aktuell_ausgewaehlt, bg="orange")
-    textausgabe.pack()
+window = tk.Tk()
+window.geometry("800x800")
 
-checkbox01 = tk.Checkbutton(root)
-checkbox01["text"] = "Sport treiben"
-checkbox01.pack()
+frame_title = tk.Frame(window)
+frame_title.pack(fill='both', expand=True, pady=5, padx=5)
 
-checkbox01var = tk.BooleanVar()
-checkbox01var.set(True)
-checkbox01["variable"] = checkbox01var
+listbox_title = tk.Listbox(frame_title, selectbackground="#960000", selectforeground="white", bg="white", width = 50, height = 20)
+listbox_title.place(x=1, y=1)
+listbox_title.configure(font=("Arial", 12))
 
-checkbox02 = tk.Checkbutton(root)
-checkbox02["text"] = "Lesen"
-checkbox02.pack()
+## Vertical Scroll Bar ##
+scrollbar_title = tk.Scrollbar(frame_title, command=listbox_title.yview, orient="vertical")
+listbox_title.config(yscrollcommand=scrollbar_title.set)
+scrollbar_title.place(in_=listbox_title, relx=1.0, relheight=1.0, bordermode="outside")
 
-checkbox02var = tk.BooleanVar()
-checkbox02["variable"] = checkbox02var
+listbox_title.bind('<Double-Button-1>') 
 
-checkbox03 = tk.Checkbutton(root)
-checkbox03["text"] = "Filme schauen"
-checkbox03.pack()
 
-checkbox03var = tk.BooleanVar()
-checkbox03["variable"] = checkbox03var
+text_download = ScrolledText(window, bg="white", width = 50, height = 10)
+text_download.place(x=1, y=500)
+text_download.configure(font=("Arial", 14))
 
-schaltf1 = tk.Button(root, text="Aktion durchführen", command= ausgabe)
-schaltf1.pack()
 
-root.mainloop()
+window.mainloop()

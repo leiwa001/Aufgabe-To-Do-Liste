@@ -60,6 +60,11 @@ class GUI:
         # Auflistung hinzufügen
         self.aufgabenliste = tk.Listbox(self.fenster, width=28, height=28, bd=5)
 
+        scrollbar = tk.Scrollbar(self.fenster)
+        scrollbar.place(in_ = self.aufgabenliste, relx = 1.0, relheight = 1.0, bordermode = "outside")
+        self.aufgabenliste.config(yscrollcommand = scrollbar.set)
+        scrollbar.config(command = self.aufgabenliste.yview)
+
         self.aufgabenliste.bind("<Double-1>", self.edit_start)
 
         self.aufgaben_label = tk.Label(self.fenster, text="Deine Aufgaben:")
