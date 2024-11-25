@@ -2,21 +2,21 @@
     {
         "task": "arbeiten",
         "completed": false,
-        "beschreibung": "Beschreibung:\n\n\n\n",
-        "faelligkeit": "-nicht festgelegt-",
-        "erstellung": "25.11.2024"
-    },
-    {
-        "task": "joggen gehen",
-        "completed": true,
         "beschreibung": "Beschreibung:\n\n\n\n\n",
-        "faelligkeit": "25.11.24",
+        "faelligkeit": "-nicht festgelegt-",
         "erstellung": "25.11.2024"
     },
     {
         "task": "einkaufen",
         "completed": false,
-        "beschreibung": "Beschreibung:\n\n\n",
+        "beschreibung": "Beschreibung:\n\n\ndddd\n\n\n",
+        "faelligkeit": "27.11.24",
+        "erstellung": "25.11.2024"
+    },
+    {
+        "task": "laufen",
+        "completed": false,
+        "beschreibung": "Beschreibung:\n\n",
         "faelligkeit": "-nicht festgelegt-",
         "erstellung": "25.11.2024"
     }

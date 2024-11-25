@@ -61,9 +61,9 @@ class GUI:
         self.aufgabenliste = tk.Listbox(self.fenster, width=28, height=28, bd=5)
 
         scrollbar = tk.Scrollbar(self.fenster)
-        scrollbar.place(in_ = self.aufgabenliste, relx = 1.0, relheight = 1.0, bordermode = "outside")
-        self.aufgabenliste.config(yscrollcommand = scrollbar.set)
-        scrollbar.config(command = self.aufgabenliste.yview)
+        scrollbar.place(in_=self.aufgabenliste, relx=1.0, relheight=1.0, bordermode="outside")
+        self.aufgabenliste.config(yscrollcommand=scrollbar.set)
+        scrollbar.config(command=self.aufgabenliste.yview)
 
         self.aufgabenliste.bind("<Double-1>", self.edit_start)
 
@@ -229,24 +229,24 @@ class GUI:
 
     # Loesch-Funktionen, um nur 1 Label gleichzeitig anzuzeigen
     def label_loeschen_eingabe(self):
-        self.speicher_label.config(text=" ")
-        self.lade_label.config(text=" ")
-        self.loesch_label.config(text=" ")
+        self.speicher_label.config(text="")
+        self.lade_label.config(text="")
+        self.loesch_label.config(text="")
 
     def label_loeschen_speichern(self):
-        self.task_label.config(text=" ")
-        self.lade_label.config(text=" ")
-        self.loesch_label.config(text=" ")
+        self.task_label.config(text="")
+        self.lade_label.config(text="")
+        self.loesch_label.config(text="")
 
     def label_loeschen_laden(self):
-        self.task_label.config(text=" ")
-        self.speicher_label.config(text=" ")
-        self.loesch_label.config(text=" ")
+        self.task_label.config(text="")
+        self.speicher_label.config(text="")
+        self.loesch_label.config(text="")
 
     def label_loeschen_loeschen(self):
-        self.task_label.config(text=" ")
-        self.speicher_label.config(text=" ")
-        self.lade_label.config(text=" ")
+        self.task_label.config(text="")
+        self.speicher_label.config(text="")
+        self.lade_label.config(text="")
 
     # Index des zu bearbeitenden Elements
     def edit_start(self, event):
