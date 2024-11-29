@@ -22,8 +22,6 @@ class GUI:
             "erstellung": "",
         }
 
-        # Fenster erstellen
-
         # Fenstergröße und Titel festlegen
         self.fenster.geometry("1200x700")
         self.fenster.title("\nDie To-Do-Liste\n")
@@ -152,6 +150,10 @@ class GUI:
     def callback(self, event):
         self.button_action_eingabefeld()
 
+
+
+
+
     # öffnet Bearbeitung und new_window mit allen button, label, etc.
     def button_action_bearbeiten(self):
         self.new_window = tk.Toplevel(self.fenster)
@@ -210,11 +212,20 @@ class GUI:
             self.check_label.config(text="  Noch nicht erledigt!")
             self.sel_dict["completed"] = False
 
+
+
+
+
     # faelligkeitstermin speichern
     def get_datum(self):
         datum = self.cal.get_date()
         self.cal_label.config(text="Fälligkeitstermin: " + self.cal.get_date())
         self.sel_dict["faelligkeit"] = datum
+
+
+
+
+
 
     # speichert Bearbeitung im new_window
     def bearbeitung_speichern(self):
@@ -226,6 +237,8 @@ class GUI:
         self.task_list = json.dumps(self.dict_list, indent=4)
         path.write_text(self.task_list)
         self.label_loeschen_speichern()
+
+
 
     # Loesch-Funktionen, um nur 1 Label gleichzeitig anzuzeigen
     def label_loeschen_eingabe(self):
@@ -247,6 +260,13 @@ class GUI:
         self.task_label.config(text="")
         self.speicher_label.config(text="")
         self.lade_label.config(text="")
+
+
+
+
+
+
+
 
     # Index des zu bearbeitenden Elements
     def edit_start(self, event):
@@ -278,6 +298,13 @@ class GUI:
         self.aufgabenliste.delete(self.aufgabenliste.edit_item)
         self.aufgabenliste.insert(self.aufgabenliste.edit_item, new_data)
         event.widget.destroy()
+
+
+
+
+
+
+
 
 
 fenster = tk.Tk()
